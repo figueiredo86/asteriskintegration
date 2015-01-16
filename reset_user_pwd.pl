@@ -7,8 +7,6 @@ use Net::LDAP;
 use Asterisk::AGI;
 use Config::Tiny;
 
-eval 'require <dir>'
-
 
 # module needed to encode AD password
 use Unicode::String qw(utf8);
