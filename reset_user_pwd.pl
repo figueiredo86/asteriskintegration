@@ -51,7 +51,8 @@ my $unicodePwd = utf8(chr(34).${passwd}.chr(34))->utf16le();
 $result = $ad->modify(
                        $dn,
                        replace => {
-                                    unicodePwd       => $unicodePwd,
+                                    #unicodePwd       => $unicodePwd,
+                                    pwd		      => $unicodePwd,
                                   }
                        );
  
