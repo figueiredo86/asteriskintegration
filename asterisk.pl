@@ -2,9 +2,12 @@
 
 use strict;
 use Net::LDAP;
-#use Asterisk::AGI;
+use Asterisk::AGI;
 use Config::Tiny;
 use Unicode::String qw(utf8);
+
+eval 'require "/home/asteriskintegration/functions/reset_user_pwd.pl"'
+
 
 my $confile = Config::Tiny->new;
 
