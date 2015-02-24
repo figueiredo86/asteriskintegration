@@ -1,27 +1,29 @@
 #!/usr/bin/perl
 
- require LWP::UserAgent;
- 
- my $connect = new LWP::UserAgent;
+use LWP::UserAgent;
+use Mozilla::CA;
 
- my $url = "https://apps.agnet.com.br/WebServices/Usuarios/Usuarios.asmx";
+my $connect = new LWP::UserAgent(keep_alive=>1);
 
- $connect->protocols_allowed( ['http','https'] );
- $connect->credentials(
-  'https://apps.agnet.com.br/WebServices/Usuarios/Usuarios.asmx?op=ConfirmarInformacoesParaReset',
-  'realm',
-  'AGDOMAIN\_srvWebServicesAG',
-  'agsenha'  
- );
+my $url = "https://apps.agnet.com.br/WebServices/Usuarios/Usuarios.asmx?op=ConfirmarInformacoesParaReset";
 
- my %wsparams = (
-  'matricula' => '33344455567',
-  'cpf' => '33344455567',
-  'rg' => '334445556',
-  'idade' => '29'
- );
+$connect->protocols_allowed( ['http','https'] );
+$connect->credentials(
+ 'https://apps.agnet.com.br/WebServices/Usuarios/Usuarios.asmx:443',
+ '',
+ 'AGDOMAIN\_srvWebServicesAG',
+ 'agsenha'  
+);
 
- my $wspost = $connect->post($url, \%wsparams);
+my %wsparams = (
+ 'matricula' => '33344455567',
+ 'cpf' => '33344455567',
+ 'rg' => '334445556',
+ 'idade' => '29'
+);
 
- print $wspost->message."\n"; 
- print $wspost->content."\n"; 
+my $wspost = $connect->post($url, \%wsparams);
+
+print $wspost->message."\n"; 
+print $wspost->code."\n"; 
+print $wspost->as_string."\n"; 
