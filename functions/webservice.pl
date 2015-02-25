@@ -1,18 +1,20 @@
 #!/usr/bin/perl
 
+use LWP::Debug;
 use LWP::UserAgent;
 use Mozilla::CA;
+use HTTP::Request::Common;
 
-my $connect = new LWP::UserAgent(keep_alive=>1);
+my $connect = new LWP::UserAgent();
 
 my $url = "https://apps.agnet.com.br/WebServices/Usuarios/Usuarios.asmx?op=ConfirmarInformacoesParaReset";
 
-$connect->protocols_allowed( ['http','https'] );
+$connect->protocols_allowed( ['https'] );
 $connect->credentials(
- 'https://apps.agnet.com.br/WebServices/Usuarios/Usuarios.asmx:443',
+ "http://apps.agnet.com.br:443",
  '',
- 'AGDOMAIN\_srvWebServicesAG',
- 'agsenha'  
+ "AGDOMAIN\_srvWebServicesAG",
+ 'agsenha'
 );
 
 my %wsparams = (
@@ -24,6 +26,4 @@ my %wsparams = (
 
 my $wspost = $connect->post($url, \%wsparams);
 
-print $wspost->message."\n"; 
-print $wspost->code."\n"; 
 print $wspost->as_string."\n"; 
