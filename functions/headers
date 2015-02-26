@@ -1,0 +1,10 @@
+HTTP/1.1 401 Unauthorized
+Content-Type: text/html
+Server: Microsoft-IIS/7.5
+WWW-Authenticate: NTLM
+WWW-Authenticate: Negotiate
+WWW-Authenticate: Basic realm="agnet.local"
+X-Powered-By: ASP.NET
+Date: Wed, 25 Feb 2015 13:54:51 GMT
+Content-Length: 1293
+

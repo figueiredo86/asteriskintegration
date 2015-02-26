@@ -5,13 +5,13 @@ use LWP::UserAgent;
 use Mozilla::CA;
 use HTTP::Request::Common;
 
-my $connect = new LWP::UserAgent();
+my $ws = new LWP::UserAgent();
 
 my $url = "https://apps.agnet.com.br/WebServices/Usuarios/Usuarios.asmx?op=ConfirmarInformacoesParaReset";
 
-$connect->protocols_allowed( ['https'] );
-$connect->credentials(
- "http://apps.agnet.com.br:443",
+$ws->protocols_allowed( ['https'] );
+$ws->credentials(
+ "",
  '',
  "AGDOMAIN\_srvWebServicesAG",
  'agsenha'
@@ -24,6 +24,6 @@ my %wsparams = (
  'idade' => '29'
 );
 
-my $wspost = $connect->post($url, \%wsparams);
+my $wspost = $ws->post($url, \%wsparams);
 
 print $wspost->as_string."\n"; 
